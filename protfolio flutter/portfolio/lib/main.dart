@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:portfolio/about.dart'; // Certifique-se de ter a Tela2 aqui
 
 void main() {
   runApp(const MyApp());
@@ -30,19 +31,58 @@ class TelaHome extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            // Foto redonda
+            CircleAvatar(
+              radius: 180,
+              backgroundImage: AssetImage("assets/images/minha_img.png"),
+            ),
+
+            // Texto "Welcome" com contorno roxo
             Text(
               "Welcome",
               style: GoogleFonts.montserrat(
                 fontSize: 80,
                 fontWeight: FontWeight.bold,
+                foreground: Paint()
+                  ..style = PaintingStyle.stroke
+                  ..strokeWidth = 3
+                  ..color = const Color.fromARGB(255, 147, 72, 209),
               ),
             ),
+            const SizedBox(height: 10),
+
+            // Texto descritivo
             SizedBox(
               width: 300,
               child: Text(
                 "This is my portfolio and have a little bit of me. "
-                "Sail in this sea of adventures and learning", //Deixar o learning bold
-                style: Theme.of(context).textTheme.bodyLarge,
+                "Sail in this sea of adventures and learning",
+                style: Theme.of(
+                  context,
+                ).textTheme.bodyLarge?.copyWith(fontSize: 18),
+              ),
+            ),
+            const SizedBox(height: 20),
+
+            // Botão estilizado
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Tela2()),
+                );
+              },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: const Color.fromARGB(255, 147, 72, 209),
+                foregroundColor: Colors.white,
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 24,
+                  vertical: 12,
+                ),
+              ),
+              child: const Text(
+                "SOBRE MIM",
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
             ),
           ],
