@@ -118,7 +118,7 @@ class _Tela2State extends State<Tela2> {
                   GestureDetector(
                     onTap: () {
                       _launchURL(
-                        'https://www.canva.com/design/DAGoGXLZAzE/Z1KDDMBCsZkPagyE8U-GGg/edit?utm_content=DAGoGXLZAzE&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton',
+                        'https://www.canva.com/design/DAGfpOY7yc4/KzuCxBt4KqGOKKX2ip8KsQ/edit?utm_content=DAGfpOY7yc4&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton',
                       );
                     },
                     child: Text(
@@ -136,7 +136,7 @@ class _Tela2State extends State<Tela2> {
                   GestureDetector(
                     onTap: () {
                       _launchURL(
-                        'https://www.canva.com/design/DAGfpOY7yc4/KzuCxBt4KqGOKKX2ip8KsQ/edit?utm_content=DAGfpOY7yc4&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton',
+                        'https://www.canva.com/design/DAGoGXLZAzE/Z1KDDMBCsZkPagyE8U-GGg/edit?utm_content=DAGoGXLZAzE&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton',
                       );
                     },
                     child: Text(
