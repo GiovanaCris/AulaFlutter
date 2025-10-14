@@ -25,6 +25,7 @@ class TelaHome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color.fromARGB(255, 233, 225, 255),
       body: Padding(
         padding: const EdgeInsets.all(56.0),
         child: Column(
@@ -81,7 +82,7 @@ class TelaHome extends StatelessWidget {
                 ),
               ),
               child: const Text(
-                "SOBRE MIM",
+                "ABOUT ME",
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
             ),

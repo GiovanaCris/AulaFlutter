@@ -28,6 +28,7 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  url_launcher: ^6.1.12
   flutter:
     sdk: flutter
 
@@ -56,6 +57,8 @@ dev_dependencies:
 flutter:
   assets:
     - assets/images/minha_img.png
+    - assets/images/Group 4.png
+    - assets/images/Ferramentas.png
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
