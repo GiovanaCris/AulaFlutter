@@ -2,10 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-void main() {
-  runApp(const MaterialApp(home: Tela2()));
-}
-
 class Tela2 extends StatefulWidget {
   const Tela2({super.key});
 
