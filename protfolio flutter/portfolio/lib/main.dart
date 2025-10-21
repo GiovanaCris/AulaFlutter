@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:portfolio/about.dart'; // Certifique-se de ter a Tela2 aqui
-
 void main() {
   runApp(const MyApp());
 }
@@ -92,3 +91,4 @@ class TelaHome extends StatelessWidget {
     );
   }
 }
+
