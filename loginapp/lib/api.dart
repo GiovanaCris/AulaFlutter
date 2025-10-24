@@ -21,7 +21,7 @@ class _ApiPageState extends State<ApiPage> {
 
   void getvalue() async {
     //Função que busca o valor, async espera um retorno específico para fazer algo
-    final response = await http.get(Uri.parse(""));
+    final response = await http.get(Uri.parse("https://dummyjson.com/products"));
 
     if (response.statusCode == 200) {
       //Se o status da requisição for ok
@@ -29,7 +29,7 @@ class _ApiPageState extends State<ApiPage> {
       final data = jsonDecode(response.body);
 
       setState(() {
-        value = data[0]["title"];
+        value = data["products"][0]["title"];
       });
     }
   }
