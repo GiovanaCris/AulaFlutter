@@ -1,14 +1,14 @@
+import 'package:bdapp/post.dart';
+import 'package:bdapp/put.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'firebase_options.dart';
+import 'package:bdapp/delete.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized(); //Função para inicializar os componentes que utiliza o firebase
-  await Firebase.initializeApp(
-    //aguarda o forebase inicializar
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
   runApp(const MyApp());
 }
@@ -18,7 +18,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(home: TelaGet());
+    return const MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: TelaGet(),
+    );
   }
 }
 
@@ -30,53 +33,83 @@ class TelaGet extends StatefulWidget {
 }
 
 class _TelaGetState extends State<TelaGet> {
-  String?
-  temperatura; //Variavel double, pode ser nula, caso o database não exista
+  String? temperatura;
 
   @override
   void initState() {
     super.initState();
-    gettemp();
+    getTemp();
   }
 
-  void gettemp() {
-    //collection é o nome da sua coleção, precisa ser o mesmo nome escolhido no banco de dados
+  void getTemp() {
     FirebaseFirestore.instance.collection("monitoramento").snapshots().listen((
       snapshot,
     ) {
-      //o que você irá fazer para cada um?
-      dynamic data = snapshot.docs.first
-          .data(); //Data == ao primeiro documento que tem no seu banco
-      setState(() {
-        temperatura = data['temperatura'];
-      });
+      if (snapshot.docs.isNotEmpty) {
+        dynamic data = snapshot.docs.first.data();
+        setState(() {
+          temperatura = data['temperatura'].toString();
+        });
+      }
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text(
-            "Tela de GET Firebase",
-            style: TextStyle(fontWeight: FontWeight.bold),
-          ),
-          centerTitle: true,
-          toolbarHeight: 100,
-          backgroundColor: Colors.cyan[50],
-          foregroundColor: Colors.cyan,
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text(
+          "Tela de GET Firebase",
+          style: TextStyle(fontWeight: FontWeight.bold),
         ),
-        body: Center(
-          child: Text(
-            "$temperaturaº",
-            style: TextStyle(
-              fontSize: 60,
-              color: Colors.cyan,
-              fontWeight: FontWeight.bold,
-            ), // opcional, só pra destacar
-          ),
+        centerTitle: true,
+        toolbarHeight: 100,
+        backgroundColor: Colors.cyanAccent[100],
+        foregroundColor: Colors.cyan[900],
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              temperatura != null ? "$temperaturaº" : "Carregando...",
+              style: const TextStyle(
+                fontSize: 60,
+                color: Colors.cyan,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const SizedBox(height: 40),
+
+            const SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => PostPage()),
+                );
+              },
+              child: const Text("Ir para tela post!"),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => DeletePage()),
+                );
+              },
+              child: Text("Ir para tela Delete"),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => PutPage()),
+                );
+              },
+              child: Text("Ir para tela Put"),
+            ),
+          ],
         ),
       ),
     );
